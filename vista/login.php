@@ -10,14 +10,24 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/css/all.min.css">
 </head>
+<?php
+session_start();
+if(!empty($_SESSION['us_tipo'])){
+    header('Location: ../controlador/LoginController.php');
+}
+else{
+    session_destroy();
+
+?>
 <body>
+    
    <img class="wave" src="../img/wave.png" alt="">
    <div class="contenedor">
         <div class="img">
             <img src="../img/undraw_medicine_b-1-ol.svg" alt="">
         </div>
         <div class="contenido-login">
-            <form action="">
+            <form action="../controlador/LoginController.php" method="post">
                 <img src="../img/logo.png" alt="">
                 <h2>FARMACIA</h2>
                 <div class="input-div dni">
@@ -46,3 +56,6 @@
    <script src="../js/login.js"></script>
 </body>
 </html>
+<?php
+}
+?>
