@@ -11,12 +11,12 @@ if($_SESSION['us_tipo']==2){
 </head>
 <body>
     <h1>Hola Técnico!</h1>
-    <a href="../controlador/logout.php">Cerrar Sesión</a>
+    <a href="../controlador/Logout.php">Cerrar Sesión</a>
 </body>
 </html>
 <?php
 }
 else{
-    header('Location: ../vista/login.php');
+    header('Location: ../index.php');
 }
 ?>
