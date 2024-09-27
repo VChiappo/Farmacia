@@ -38,18 +38,19 @@ if($_SESSION['us_tipo']==1){
                             <img src="../img/avatar.png" class="profile-user-img img-fluid img-circle">
                             
                         </div>
-                        <h3 class="profile-username text-center text-success" >Nombre</h3>
-                            <p class="text-muted text-center">Apellido</p>
+                        <input id="id_usuario" type="hidden" value="<?php echo $_SESSION['usuario']?>">
+                        <h3 id="nombre_us" class="profile-username text-center text-success" >Nombre</h3>
+                            <p id="apellido_us" class="text-muted text-center">Apellido</p>
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b style="color:#0b7300">Edad</b><a class="float-right">12</a>
+                                    <b style="color:#0b7300">Edad</b><a id="edad" class="float-right">12</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b style="color:#0b7300">DNI</b><a class="float-right">12</a>
+                                    <b style="color:#0b7300">DNI</b><a id="dni_us" class="float-right">12</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b style="color:#0b7300">Tipo Usuario</b>
-                                    <span class="float-right badge badge-primary">Administrador</span>
+                                    <span id="us_tipo" class="float-right badge badge-primary">Administrador</span>
                                 </li>
                             </ul>
                         </div>
@@ -63,19 +64,19 @@ if($_SESSION['us_tipo']==1){
                             <strong style="color:#0b7300">
                                 <i class="fas fa-phone mr-1"></i>Teléfono
                             </strong>
-                            <p class="text-muted">4256951</p>
+                            <p id="telefono_us" class="text-muted">4256951</p>
                             <strong style="color:#0b7300">
                                 <i class="fas fa-map-marker-alt mr-1"></i>Residencia
                             </strong>
-                            <p class="text-muted">4256951</p>
+                            <p id="residencia_us"class="text-muted">Residencia1</p>
                             <strong style="color:#0b7300">
                                 <i class="fas fa-at mr-1"></i>Correo
                             </strong>
-                            <p class="text-muted">4256951</p>
+                            <p id="correo_us" class="text-muted">correo1</p>
                             <strong style="color:#0b7300">
                                 <i class="fas fa-smile-wink mr-1"></i>Sexo
                             </strong>
-                            <p class="text-muted">4256951</p>
+                            <p id="adicional_us" class="text-muted">sexo1</p>
                             <strong style="color:#0b7300">
                                 <i class="fas fa-pencil-alt mr-1"></i>Información Adicional
                             </strong>
@@ -151,3 +152,4 @@ else{
     header('Location: ../index.php');
 }
 ?>
+<script src="../js/usuario.js"></script>
