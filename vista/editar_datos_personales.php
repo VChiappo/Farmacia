@@ -76,11 +76,11 @@ if($_SESSION['us_tipo']==1){
                             <strong style="color:#0b7300">
                                 <i class="fas fa-smile-wink mr-1"></i>Sexo
                             </strong>
-                            <p id="adicional_us" class="text-muted">sexo1</p>
+                            <p id="sexo_us" class="text-muted">sexo1</p>
                             <strong style="color:#0b7300">
                                 <i class="fas fa-pencil-alt mr-1"></i>Información Adicional
                             </strong>
-                            <p class="text-muted">4256951</p>
+                            <p id="adicional_us" class="text-muted">4256951</p>
                             <button class="btn btn-block bg-gradient-danger">Editar</button>
                         </div>
                         <div class="card-footer">
