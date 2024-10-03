@@ -38,7 +38,7 @@ if($_SESSION['us_tipo']==1){
                             <img src="../img/avatar.png" class="profile-user-img img-fluid img-circle">
                             
                         </div>
-                        <input id="id_usuario" type="hidden" value="<?php echo $_SESSION['usuario']?>">
+                        <input id="id_usuario"type="hidden" value="<?php echo $_SESSION['usuario']?>">
                         <h3 id="nombre_us" class="profile-username text-center text-success" >Nombre</h3>
                             <p id="apellido_us" class="text-muted text-center">Apellido</p>
                             <ul class="list-group list-group-unbordered mb-3">
