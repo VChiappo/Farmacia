@@ -9,6 +9,50 @@ if($_SESSION['us_tipo']==1){
   <?php
   include_once "layouts/nav.php";
  ?>
+
+ <!-- Modal -->
+ <div class="modal fade" id="cambiocontra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar password</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img src="../img/avatar.png" class="profile-user-img img-fluid img-circle">
+          </div>
+          <div class="text-center">
+            <b>
+              <?php
+                echo $_SESSION['nombre_us'];
+              ?>
+            </b>
+          </div>
+          <form id="form-pass">
+            <!-- Campo para la contraseña actual -->
+            <div class="input-group mb-3">
+              <span class="input-group-text bg-light">
+                <i class="fas fa-unlock-alt"></i>
+              </span>
+              <input id="oldpass" type="password" class="form-control" placeholder="Ingrese contraseña actual" aria-label="Contraseña actual">
+            </div>
+            <!-- Campo para la nueva contraseña -->
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-light">
+               <i class="fas fa-lock"></i>
+            </span>
+            <input id="newpass" type="password" class="form-control" placeholder="Ingrese nueva contraseña" aria-label="Nueva contraseña">
+          </div>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -52,6 +96,8 @@ if($_SESSION['us_tipo']==1){
                                     <b style="color:#0b7300">Tipo Usuario</b>
                                     <span id="us_tipo" class="float-right badge badge-primary">Administrador</span>
                                 </li>
+                                <button data-bs-toggle="modal" data-bs-target="#cambiocontra" type="button" class="btn btn-block btn-outline-warning btn-sm">Cambiar password</button>
+
                             </ul>
                         </div>
 
@@ -159,3 +205,5 @@ else{
 }
 ?>
 <script src="../js/usuario.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."></script>

@@ -87,5 +87,13 @@ $(document).ready(function () {
             $('#form-usuario').trigger('reset');
         }
         e.preventDefault();
-    })
+    });
+
+     $("#form-pass").submit(e=>{
+        let oldpass=$("#oldpass").val();
+        let newpass=$("#newpass").val();
+        console.log(oldpass + newpass);
+     })
+    e.preventDefault();
+
 });
