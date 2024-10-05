@@ -69,6 +69,59 @@ if($_SESSION['us_tipo']==1){
             </ol>
           </div>
         </div>
+        <div class="modal fade" id="cambiophoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar avatar</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img src="../img/avatar.png" class="profile-user-img img-fluid img-circle">
+          </div>
+          <div class="text-center">
+            <b>
+              <?php
+                echo $_SESSION['nombre_us'];
+              ?>
+            </b>
+          </div>
+          <div class="alert alert-success text-center" id="update" style='display:none'>
+            <span> <i class="fas fa-times m-1"></i> El password se cambio correctamente</span>
+          </div>
+          <form id="form-photo" enctype="multipart/form-data">
+            <!-- Campo para la contraseña actual -->
+            <div class="input-group mb-3">
+              <input type="file" name="photo" class="input-group">
+              <input type="hiden" name="function" value="cambiar_foto">
+
+            </div>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Datos Personales</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="../vista/adm_catalogo.php">Home</a></li>
+              <li class="breadcrumb-item active">Datos Personales</li>
+            </ol>
+          </div>
+        </div>
       </div><!-- /.container-fluid -->
     </section>
    <section>
@@ -81,6 +134,9 @@ if($_SESSION['us_tipo']==1){
                         <div class="text-center">
                             <img src="../img/avatar.png" class="profile-user-img img-fluid img-circle">
                             
+                        </div>
+                        <div class="text-center mt-1">
+                          <button type= "button" data-toggle="modal" data-target="#cambiophoto" class="btn btn-primary btn-sm">Cambiar Avatar</button>
                         </div>
                         <input id="id_usuario"type="hidden" value="<?php echo $_SESSION['usuario']?>">
                         <h3 id="nombre_us" class="profile-username text-center text-success" >Nombre</h3>
