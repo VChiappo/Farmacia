@@ -29,6 +29,12 @@ if($_SESSION['us_tipo']==1){
               ?>
             </b>
           </div>
+          <div class="alert alert-success text-center" id="update" style="display: none;">
+            <span><i class="fas fa-check m-1"></i>Contraseña cambiada con exito</span>
+          </div>
+          <div class="alert alert-danger text-center" id="noupdate" style="display: none;">
+            <span><i class="fas fa-times m-1"></i>Contraseña incorrecta</span>
+          </div>
           <form id="form-pass">
             <!-- Campo para la contraseña actual -->
             <div class="input-group mb-3">
@@ -42,7 +48,7 @@ if($_SESSION['us_tipo']==1){
             <span class="input-group-text bg-light">
                <i class="fas fa-lock"></i>
             </span>
-            <input id="newpass" type="password" class="form-control" placeholder="Ingrese nueva contraseña" aria-label="Nueva contraseña">
+            <input id="newpass" type="text" class="form-control" placeholder="Ingrese nueva contraseña" aria-label="Nueva contraseña">
           </div>
         </div>
           <div class="modal-footer">
@@ -247,4 +253,4 @@ else{
 ?>
 <script src="../js/usuario.js"></script>
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

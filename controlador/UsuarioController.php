@@ -3,12 +3,16 @@ include_once '../modelo/Usuario.php';
 $usuario= new Usuario();
 if($_POST['funcion']=='buscar_usuario'){
     $json=array();
+    $fecha_actual= new DateTime();
     $usuario->obtener_datos($_POST['dato']);
     foreach ($usuario -> objetos as $objeto){
+        $nacimiento = new DateTime($objeto ->edad);
+        $edad= $nacimiento-> diff($fecha_actual);
+        $edad_year=$edad->y;
         $json[]=array(
             'nombre'=>$objeto->nombre_us,
             'apellidos'=>$objeto->apellido_us,
-            'edad'=> $objeto->edad,
+            'edad'=> $edad_year,
             'dni'=>$objeto->dni_us,
             'tipo'=>$objeto->nombre_tipo,
             'telefono'=>$objeto->telefono_us,
@@ -50,7 +54,20 @@ if($_POST['funcion']=='editar_usuario'){
     echo 'editado';
 }
 
+<<<<<<< HEAD
 if($_POST['funcion']=='cambiar_foto'){
   $nombre=$_FILES['photo']['name'];
   echo $nombre;
 }
+=======
+if($_POST['funcion']=='cambiar_contra'){
+    $id_usuario=$_POST['id_usuario'];
+    $oldpass=$_POST['oldpass'];
+    $newpass=$_POST['newpass'];
+    $usuario-> cambiar_contra($id_usuario, $oldpass, $newpass);
+
+}
+
+
+?>
+>>>>>>> 3968d75fbc1ba822c76904282651b6f41eb177a3
