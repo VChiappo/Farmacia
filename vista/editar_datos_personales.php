@@ -53,22 +53,7 @@ if($_SESSION['us_tipo']==1){
       </div>
     </div>
   </div>
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Datos Personales</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../vista/adm_catalogo.php">Home</a></li>
-              <li class="breadcrumb-item active">Datos Personales</li>
-            </ol>
-          </div>
-        </div>
+ 
         <div class="modal fade" id="cambiophoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -92,9 +77,9 @@ if($_SESSION['us_tipo']==1){
           </div>
           <form id="form-photo" enctype="multipart/form-data">
             <!-- Campo para la contraseña actual -->
-            <div class="input-group mb-3">
+            <div class="input-group mb-3 ml-5 mt-2">
               <input type="file" name="photo" class="input-group">
-              <input type="hiden" name="function" value="cambiar_foto">
+              <input type="hidden" name="funcion" value="cambiar_foto">
 
             </div>
             </div>

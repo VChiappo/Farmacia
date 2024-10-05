@@ -96,4 +96,19 @@ $(document).ready(function () {
      })
     e.preventDefault();
 
+     $('#form-photo').submit(e=>{
+        let formData = new FormData($('#form-photo')[0]);
+        $.ajax({
+            url:'../controlador/UsuarioController.php',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false
+        }).done(function(response){
+            console.log(response);
+        });
+        e.preventDefault();
+     })
+
 });

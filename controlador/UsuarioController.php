@@ -50,4 +50,7 @@ if($_POST['funcion']=='editar_usuario'){
     echo 'editado';
 }
 
-?>
+if($_POST['funcion']=='cambiar_foto'){
+  $nombre=$_FILES['photo']['name'];
+  echo $nombre;
+}
