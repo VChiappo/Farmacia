@@ -89,11 +89,27 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-     $("#form-pass").submit(e=>{
-        let oldpass=$("#oldpass").val();
-        let newpass=$("#newpass").val();
-        console.log(oldpass + newpass);
-     })
-    e.preventDefault();
+     $('#form-pass').submit(e=>{
+        let oldpass=$('#oldpass').val();
+        let newpass=$('#newpass').val();
+        funcion='cambiar_contra';
+         $.post('../controlador/UsuarioController.php',{id_usuario,funcion,oldpass,newpass}, (Response)=>{
+            if(Response =='update'){
+                $('#update').hide('slow');
+                $('#update').show(1000);
+                $('#update').hide(2000);
+                $('#form-pass').trigger('reset');
+            }
+            else{
+                $('#noupdate').hide('slow');
+                $('#noupdate').show(1000);
+                $('#noupdate').hide(2000);
+                $('#form-pass').trigger('reset');
+            }
+         })
+
+        e.preventDefault();
+    })
+   
 
 });
