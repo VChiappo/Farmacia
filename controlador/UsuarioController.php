@@ -54,12 +54,10 @@ if($_POST['funcion']=='editar_usuario'){
     echo 'editado';
 }
 
-<<<<<<< HEAD
 if($_POST['funcion']=='cambiar_foto'){
   $nombre=$_FILES['photo']['name'];
   echo $nombre;
 }
-=======
 if($_POST['funcion']=='cambiar_contra'){
     $id_usuario=$_POST['id_usuario'];
     $oldpass=$_POST['oldpass'];
@@ -70,4 +68,3 @@ if($_POST['funcion']=='cambiar_contra'){
 
 
 ?>
->>>>>>> 3968d75fbc1ba822c76904282651b6f41eb177a3
