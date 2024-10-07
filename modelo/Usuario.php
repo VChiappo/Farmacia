@@ -52,7 +52,7 @@ class Usuario{
             $sql="UPDATE usuario SET avatar=:nombre where id_usuario=:id";
             $query = $this->acceso->prepare($sql);
             $query->execute(array(':id'=>$id_usuario, ':nombre'=>$nombre));
-            return $this->objetos
+            return $this->objetos;
         }
         
     
