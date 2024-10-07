@@ -22,6 +22,7 @@ if($_POST['funcion']=='buscar_usuario'){
             'correo'=>$objeto->correo_us,
             'sexo'=>$objeto->sexo_us,
             'adicional'=>$objeto->adicional_us,
+            
         );
     }
     $jsonstring = json_encode($json[0]);
@@ -80,5 +81,29 @@ if($_POST['funcion']=='cambiar_foto'){
 
     }
   }
-
+  if($_POST['funcion']=='buscar_usuarios_adm'){
+    $json=array();
+    $fecha_actual= new DateTime();
+    $usuario->buscar();
+    foreach ($usuario -> objetos as $objeto){
+        $nacimiento = new DateTime($objeto ->edad);
+        $edad= $nacimiento-> diff($fecha_actual);
+        $edad_year=$edad->y;
+        $json[]=array(
+            'nombre'=>$objeto->nombre_us,
+            'apellidos'=>$objeto->apellido_us,
+            'edad'=> $edad_year,
+            'dni'=>$objeto->dni_us,
+            'tipo'=>$objeto->nombre_tipo,
+            'telefono'=>$objeto->telefono_us,
+            'residencia'=>$objeto->residencia_us,
+            'correo'=>$objeto->correo_us,
+            'sexo'=>$objeto->sexo_us,
+            'adicional'=>$objeto->adicional_us,
+            //'avatar'=>'../img/'.$objeto->avatar
+        );
+    }
+    $jsonstring = json_encode($json);
+    echo $jsonstring;
+}
 ?>

@@ -84,7 +84,9 @@ if($_SESSION['us_tipo']==1){
                 </div>
             </div>
             <div class="card-body">
-
+                <div id="usuarios" class="row d-flex algin-items-strech">
+                    
+                </div>
             </div>
             <div class="card-footer">
 
@@ -101,7 +103,7 @@ else{
     header('Location: ../index.php');
 }
 ?>
-<script src="../js/usuario.js"></script>
+<script src="../js/gestion_usuario.js"></script>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
  
