@@ -1,6 +1,8 @@
 <?php
 include_once '../modelo/Usuario.php';
 $usuario= new Usuario();
+session_start();
+$id_usuario= $_SESSION['usuario'];
 if($_POST['funcion']=='buscar_usuario'){
     $json=array();
     $fecha_actual= new DateTime();
@@ -54,10 +56,7 @@ if($_POST['funcion']=='editar_usuario'){
     echo 'editado';
 }
 
-if($_POST['funcion']=='cambiar_foto'){
-  $nombre=$_FILES['photo']['name'];
-  echo $nombre;
-}
+
 if($_POST['funcion']=='cambiar_contra'){
     $id_usuario=$_POST['id_usuario'];
     $oldpass=$_POST['oldpass'];
@@ -66,5 +65,20 @@ if($_POST['funcion']=='cambiar_contra'){
 
 }
 
+if($_POST['funcion']=='cambiar_foto'){
+    if (($_FILES['photo']['type'] == 'image/jpeg')||($_FILES['photo']['type'] == 'image/png')|| ($_FILES['photo']['type'] == 'image/gif')){
+        $nombre=uniqid()."-".$_FILES['photo']['name'];
+        $ruta= '../img/'.$nombre;
+        move_uploaded_file($_FILES['photo']['tmp_name'], $ruta);
+        $usuario->cambiar_photo($id_usuario, $nombre);
+        foreach($usuario->objetos as $objeto){
+            unlink('../img/'.$objeto->avatar);
+        }
+
+    }
+    else{
+
+    }
+  }
 
 ?>
