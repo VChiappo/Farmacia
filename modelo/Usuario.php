@@ -54,10 +54,8 @@ class Usuario{
             $query->execute(array(':id'=>$id_usuario, ':nombre'=>$nombre));
             return $this->objetos;
     }
-<<<<<<< HEAD
         
 
-=======
     
     function buscar(){
         if(!empty($_POST['consulta'])){
@@ -77,6 +75,5 @@ class Usuario{
         }
     }
     
->>>>>>> aea0c03f7351921f87cd90507a0dc79dc1577241
 }
 ?>
