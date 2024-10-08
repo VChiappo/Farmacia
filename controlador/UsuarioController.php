@@ -15,7 +15,7 @@ if($_POST['funcion']=='buscar_usuario'){
             'residencia'=>$objeto->residencia_us,
             'correo'=>$objeto->correo_us,
             'sexo'=>$objeto->sexo_us,
-            'adicional'=>$objeto->adicional_us,
+            'adicional'=>$objeto->adicional_us
         );
     }
     $jsonstring = json_encode($json[0]);
@@ -31,7 +31,7 @@ if($_POST['funcion']=='capturar_datos'){
             'residencia'=>$objeto->residencia_us,
             'correo'=>$objeto->correo_us,
             'sexo'=>$objeto->sexo_us,
-            'adicional'=>$objeto->adicional_us,
+            'adicional'=>$objeto->adicional_us
         );
     }
     $jsonstring = json_encode($json[0]);

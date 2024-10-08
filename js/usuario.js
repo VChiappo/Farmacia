@@ -50,7 +50,7 @@ $(document).ready(function () {
     $(document).on('click', '.edit', (e) => {
         funcion = 'capturar_datos';
         edit = true;
-        $.post('../controlador/UsuarioController.php', { funcion, id_usuario }, (response) => {
+        $.post('../controlador/UsuarioController.php',{funcion,id_usuario},(response)=>{
             const usuario = JSON.parse(response);
             $('#telefono').val(usuario.telefono);
             $('#residencia').val(usuario.residencia);
