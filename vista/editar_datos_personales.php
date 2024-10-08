@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['us_tipo']==1){
+if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){
   include_once "layouts/header.php";
 ?>
 
@@ -110,7 +110,7 @@ if($_SESSION['us_tipo']==1){
     </div>
   </div>
  
-        <div class="modal fade" id="cambiophoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cambiophoto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

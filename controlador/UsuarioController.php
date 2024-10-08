@@ -22,7 +22,6 @@ if($_POST['funcion']=='buscar_usuario'){
             'correo'=>$objeto->correo_us,
             'sexo'=>$objeto->sexo_us,
             'adicional'=>$objeto->adicional_us,
-            'avatar'=>'../img/'.$objeto->avatar
         );
     }
     $jsonstring = json_encode($json[0]);
@@ -92,8 +91,7 @@ if($_POST['funcion']=='cambiar_foto'){
     echo $jsonstring;
 
     }
-}
-  
+  }
 
 ?>
 
