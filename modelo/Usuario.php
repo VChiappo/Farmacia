@@ -27,5 +27,56 @@ class Usuario{
         $query = $this->acceso->prepare($sql);
         $query->execute(array(':id'=>$id_usuario, ':telefono'=>$telefono, ':residencia'=>$residencia, ':correo'=>$correo, ':sexo'=>$sexo, ':adicional'=>$adicional ));
     }
+
+    function cambiar_contra($id_usuario,$oldpass, $newpass){
+        $sql="SELECT * FROM usuario where id_usuario=:id and  contrasena_us=:oldpass";
+        $query = $this->acceso->prepare($sql);
+        $query->execute(array(':id'=>$id_usuario, ':oldpass'=>$oldpass));
+        $this->objetos = $query->fetchAll();
+        if(!empty($this->objetos)){
+            $sql="UPDATE usuario SET contrasena_us=:newpass where id_usuario=:id";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':id'=>$id_usuario, ':newpass'=>$newpass));
+            echo 'update';
+        }
+        else{
+            echo 'noupdate';
+        }
+    }
+
+    function cambiar_photo($id_usuario, $nombre){
+        $sql="SELECT avatar FROM usuario where id_usuario=:id";
+        $query = $this->acceso->prepare($sql);
+        $query->execute(array(':id'=>$id_usuario));
+        $this->objetos = $query->fetchall();
+            $sql="UPDATE usuario SET avatar=:nombre where id_usuario=:id";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':id'=>$id_usuario, ':nombre'=>$nombre));
+            return $this->objetos;
+    }
+<<<<<<< HEAD
+        
+
+=======
+    
+    function buscar(){
+        if(!empty($_POST['consulta'])){
+            $consulta=$_POST['consulta'];
+            $sql="SELECT * FROM usuario join tipo_us on us_tipo=id_tipo_us where nombre_us LIKE :consulta";
+            $query= $this->acceso->prepare($sql);
+            $query->execute(array(':consulta'=>"%$consulta%"));
+            $this->objetos = $query->fetchall();
+            return $this->objetos;
+        }
+        else{
+            $sql="SELECT * FROM usuario join tipo_us on us_tipo=id_tipo_us where nombre_us NOT LIKE '' ORDER BY id_usuario LIMIT 25";
+            $query= $this->acceso->prepare($sql);
+            $query->execute();
+            $this->objetos = $query->fetchall();
+            return $this->objetos;
+        }
+    }
+    
+>>>>>>> aea0c03f7351921f87cd90507a0dc79dc1577241
 }
 ?>
