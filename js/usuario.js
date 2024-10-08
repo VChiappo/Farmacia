@@ -43,6 +43,10 @@ $(document).ready(function () {
             $('#correo_us').html(correo);
             $('#sexo_us').html(sexo);
             $('#adicional_us').html(adicional);
+            $('#avatar2').attr('src', usuario.avatar);
+            $('#avatar1').attr('src', usuario.avatar);
+            $('#avatar3').attr('src', usuario.avatar);
+            $('#avatar4').attr('src', usuario.avatar);
         })
     }
 
@@ -122,7 +126,23 @@ $(document).ready(function () {
             processData: false,
             contentType: false
         }).done(function(response){
-            console.log(response);
+            const json = JSON.parse(response);
+            if(json.alert='edit'){
+                $('#avatar1').attr('src',json.ruta);
+                $('#edit').hide('slow');
+                $('#edit').show(1000);
+                $('#edit').hide(2000);
+                $('#form-photo').trigger('reset');
+                buscar_usuario(id_usuario);
+            }
+            else{
+                $('#noedit').hide('slow');
+                $('#noedit').show(1000);
+                $('#noedit').hide(2000);
+                $('#form-photo').trigger('reset');
+
+            }
+            
         });
         e.preventDefault();
      })
