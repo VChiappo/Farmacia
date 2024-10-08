@@ -1,5 +1,6 @@
 $(document).ready(function(){
     var tipo_usuario = $('#tipo_usuario').val();
+    console.log(tipo_usuario);
     buscar_datos();
     var funcion;
     function buscar_datos(consulta) {
