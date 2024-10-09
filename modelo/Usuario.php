@@ -48,12 +48,14 @@ class Usuario{
         $sql="SELECT avatar FROM usuario where id_usuario=:id";
         $query = $this->acceso->prepare($sql);
         $query->execute(array(':id'=>$id_usuario));
-        $this->objetos = $query->fetchAll();
+        $this->objetos = $query->fetchall();
             $sql="UPDATE usuario SET avatar=:nombre where id_usuario=:id";
             $query = $this->acceso->prepare($sql);
             $query->execute(array(':id'=>$id_usuario, ':nombre'=>$nombre));
             return $this->objetos;
     }
+        
+
     
     function buscar(){
         if(!empty($_POST['consulta'])){
