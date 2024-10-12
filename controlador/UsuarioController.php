@@ -2,7 +2,7 @@
 include_once '../modelo/Usuario.php';
 $usuario= new Usuario();
 session_start();
-$id_usuario= $_SESSION['usuario'];
+$id_usuario = $_SESSION['usuario'];
 if($_POST['funcion']=='buscar_usuario'){
     $json=array();
     $fecha_actual= new DateTime();
@@ -22,6 +22,7 @@ if($_POST['funcion']=='buscar_usuario'){
             'correo'=>$objeto->correo_us,
             'sexo'=>$objeto->sexo_us,
             'adicional'=>$objeto->adicional_us,
+            'avatar'=>'../img/'.$objeto->avatar
             
         );
     }
@@ -75,10 +76,21 @@ if($_POST['funcion']=='cambiar_foto'){
         foreach($usuario->objetos as $objeto){
             unlink('../img/'.$objeto->avatar);
         }
-
+        $json = array();
+        $json[]= array(
+            'ruta'=> $ruta,
+            'alert'=>'edit'
+        );
+        $jsonstring = json_encode($json[0]);
+        echo $jsonstring;
     }
     else{
-
+        $json = array();
+        $json[]= array(
+            'alert'=>'noedit'
+        );
+        $jsonstring = json_encode($json[0]);
+        echo $jsonstring;
     }
   }
   if($_POST['funcion']=='buscar_usuarios_adm'){
