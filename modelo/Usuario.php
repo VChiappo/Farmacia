@@ -73,5 +73,59 @@ class Usuario{
         }
     }
     
-}
+    /*function crear($nombre, $apellido, $edad, $dni, $pass, $tipo, $avatar){
+        $sql="SELECT id_usuario from usuario where dni_us =:dni";
+        $query= $this->acceso->prepare($sql);
+        $query->execute(array(':dni' => $dni));
+        $this->objetos = $query->fetchall();
+        if(!empty($this->objetos)){
+            echo 'noadd';
+        }
+        else{
+            $sql="INSERT INTO usuario(nombre_us, apellido_us, edad, dni_us, contrasena_us, us_tipo, avatar) VALUES (:nombre, :apellido, :edad, :dni, :pass, :tipo, :avatar)";
+            $query= $this->acceso->prepare($sql);
+            $query->execute(array(':nombre' => $nombre, ':apellido' => $apellido,':edad' => $edad,':dni' => $dni, ':pass' => $pass, ':tipo' => $tipo, ':avatar' => $avatar));
+            echo 'add';
+        }
+    }*/
+    function crear($nombre, $apellido, $edad, $dni, $pass, $tipo, $avatar) {
+        // Verifica si se está llamando a la función y se reciben los parámetros esperados
+        echo "Función 'crear' llamada con parámetros: nombre=$nombre, apellido=$apellido, edad=$edad, dni=$dni, pass=$pass, tipo=$tipo, avatar=$avatar. ";
+    
+        // Preparar la consulta de verificación de usuario
+        try {
+            $sql = "SELECT id_usuario FROM usuario WHERE dni_us = :dni";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':dni' => $dni));
+            $this->objetos = $query->fetchAll();
+            
+            if (!empty($this->objetos)) {
+                // Si el usuario ya existe
+                echo "noadd";
+            } else {
+                // Insertar un nuevo usuario
+                echo "Intentando insertar un nuevo usuario. ";
+                $sql = "INSERT INTO usuario(nombre_us, apellido_us, edad, dni_us, contrasena_us, us_tipo, avatar) 
+                        VALUES (:nombre, :apellido, :edad, :dni, :pass, :tipo, :avatar)";
+                $query = $this->acceso->prepare($sql);
+                $query->execute(array(
+                    ':nombre' => $nombre,
+                    ':apellido' => $apellido,
+                    ':edad' => $edad,
+                    ':dni' => $dni,
+                    ':pass' => $pass,
+                    ':tipo' => $tipo,
+                    ':avatar' => $avatar
+                ));
+                echo "add";
+            }
+        } catch (PDOException $e) {
+            // Capturar y mostrar cualquier error de la base de datos
+            echo "Error en la base de datos: " . $e->getMessage();
+        }
+    }
+    
+    
+ }
+            
 ?>

@@ -112,11 +112,22 @@ if($_POST['funcion']=='cambiar_foto'){
             'correo'=>$objeto->correo_us,
             'sexo'=>$objeto->sexo_us,
             'adicional'=>$objeto->adicional_us,
-            //'avatar'=>'../img/'.$objeto->avatar,
-            'tipo_ususario'=>$objeto->us_tipo
+            'avatar'=>'../img/'.$objeto->avatar,
+            'tipo_usuario'=>$objeto->us_tipo
         );
     }
     $jsonstring = json_encode($json);
     echo $jsonstring;
+
+    if($_POST['funcion']=='crear_usuario'){
+     $nombre= $_POST['nombre'];
+     $apellido= $_POST['apellido'];
+     $edad= $_POST['edad'];
+     $dni= $_POST['dni'];
+     $pass= $_POST['pass'];
+     $tipo=2;
+     $avatar='default.jpg';
+     $usuario->crear($nombre, $apellido, $edad, $dni, $pass, $tipo,	$avatar);
+    }
 }
 ?>
