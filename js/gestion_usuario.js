@@ -82,7 +82,20 @@ $(document).ready(function(){
         let pass =$('#pass').val();
         funcion='crear_usuario';
         $.post('../controlador/UsuarioController.php',{nombre, apellido, edad, dni, pass, funcion},(Response)=>{
-            console.log(Response);
+            if(Response== 'add'){
+                $('#add').hide('slow');
+                $('#add').show(1000);
+                $('#add').hide(2000);
+                $('#form-crear').trigger('reset');
+                buscar_datos();
+            }
+            else{
+                $('#noadd').hide('slow');
+                $('#noadd').show(1000);
+                $('#noadd').hide(2000);
+                $('#form-crear').trigger('reset');
+
+            }
         });
         e.preventDefault();
     });

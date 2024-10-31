@@ -20,6 +20,12 @@ if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){
                         </button>
                     </div>
                     <div class="card-body">
+                        <div class="alert alert-success text-center" id="add" style="display: none;">
+                          <span><i class="fas fa-check m-1"></i> Usuario agregado con exito</span>
+                        </div>
+                        <div class="alert alert-danger text-center" id="noadd" style="display: none;">
+                          <span><i class="fas fa-times m-1"></i>Este usuario ya existe, por favor verifique el DNI</span>
+                        </div>
                         <form id="form-crear">
                             <div class="form-group">
                                     <label for="nombre">Nombres</label>
