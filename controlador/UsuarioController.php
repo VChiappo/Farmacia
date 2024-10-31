@@ -102,6 +102,7 @@ if($_POST['funcion']=='cambiar_foto'){
         $edad= $nacimiento-> diff($fecha_actual);
         $edad_year=$edad->y;
         $json[]=array(
+            'id'=>$objeto->id_usuario,
             'nombre'=>$objeto->nombre_us,
             'apellidos'=>$objeto->apellido_us,
             'edad'=> $edad_year,
@@ -128,6 +129,17 @@ if($_POST['funcion']=='cambiar_foto'){
      $tipo=2;
      $avatar='default.jpg';
      $usuario->crear($nombre, $apellido, $edad, $dni, $pass, $tipo,	$avatar);
+    }
+    if($_POST['funcion']=='ascender'){
+        $pass=$_POST['pass'];
+        $id_ascendido=$_POST['id_ascendido'];
+        $usuario->ascender($pass, $id_ascendido, $id_usuario);
+    }
+
+    if($_POST['funcion']=='descender'){
+        $pass=$_POST['pass'];
+        $id_descendido=$_POST['id_descendido'];
+        $usuario->descender($pass, $id_descendido, $id_usuario);
     }
 }
 ?>

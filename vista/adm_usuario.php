@@ -9,6 +9,51 @@ if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){
   <?php
   include_once "layouts/nav.php";
  ?>
+    <div class="modal fade" id="confirmar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar contraseña</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img id="avatar3" src="../img/avatar.png" class="profile-user-img img-fluid img-circle">
+          </div>
+          <div class="text-center">
+            <b>
+              <?php
+                echo $_SESSION['nombre_us'];
+              ?>
+            </b>
+          </div>
+          <span>Necesitamos su contraseña para continuar</span>
+          <div class="alert alert-success text-center" id="confirmado" style="display: none;">
+            <span><i class="fas fa-check m-1"></i>Usuario modificado con exito</span>
+          </div>
+          <div class="alert alert-danger text-center" id="rechazado" style="display: none;">
+            <span><i class="fas fa-times m-1"></i>Contraseña incorrecta</span>
+          </div>
+          <form id="form-confirmar">
+            <div class="input-group mb-3">
+              <span class="input-group-text bg-light">
+                <i class="fas fa-unlock-alt"></i>
+              </span>
+              <input id="oldpass" type="password" class="form-control" placeholder="Ingrese contraseña actual" aria-label="Contraseña actual">
+              <input type="hidden" id="id_user">
+              <input type="hidden" id="funcion">
+            </div>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
     <div class="modal fade" id="crearusuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
              <div class="modal-content">
@@ -91,11 +136,9 @@ if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){
             </div>
             <div class="card-body">
                 <div id="usuarios" class="row d-flex algin-items-strech">
-                    
                 </div>
             </div>
             <div class="card-footer">
-
             </div>
         </div>
     </div>

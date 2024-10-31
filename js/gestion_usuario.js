@@ -11,10 +11,9 @@ $(document).ready(function(){
         $.post('../controlador/UsuarioController.php', { consulta, funcion }, (Response) => {
             const usuarios = JSON.parse(Response);
             let template = '';
-
             usuarios.forEach(usuario => {
                 template += `
-                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                <div usuarioId="${usuario.id}" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                     <div class="card bg-light">
                         <div class="card-header text-muted border-bottom-0">
                             ${usuario.tipo}
@@ -39,21 +38,35 @@ $(document).ready(function(){
                             </div>
                         </div>
                         <div class="card-footer">
-                            <div class="text-right">`;
-                // Mostrar el botón de eliminar
-                if (tipo_usuario == 3 && usuario.tipo_usuario != 3) {
-                  template += `
-                  <button class="btn btn-danger mr-1">
-                      <i class="fas fa-window-close mr-1"></i> Eliminar
-                  </button>`;
-                }
-                // Mostrar el botón de ascender
-                if (usuario.tipo_usuario == 2) {
-                  template += `
-                  <button class="btn btn-primary ml-1">
-                      <i class="fas fa-arrow-up mr-1"></i> Ascender
-                  </button>`;
-                } 
+                            <div class="text-right">`;   
+                        if (tipo_usuario == 3 && usuario.tipo_usuario != 3) {
+                            if(usuario.tipo_usuario!=3){
+                                template += `
+                                <button class="btn btn-danger mr-1">
+                                    <i class="fas fa-window-close mr-1"></i> Eliminar
+                                </button>`;
+                            }
+                            if (usuario.tipo_usuario==2){
+                                template += `
+                                <button class="ascender btn btn-primary mr-1" type="button" data-toggle="modal" data-target="#confirmar">
+                                    <i class="fas fa-sort-amount-up  mr-1"></i> Ascender
+                                </button>`;
+                            }
+                            if(usuario.tipo_usuario==1){
+                                template += `
+                                <button class="descender btn btn-secondary mr-1" type="button" data-toggle="modal" data-target="#confirmar">
+                                    <i class="fas fa-sort-amount-down mr-1"></i> Descender
+                                </button>`;
+                            }
+                        }
+                        else{
+                            if(tipo_usuario == 1 && usuario.tipo_usuario!=1 && usuario.tipo_usuario!=3){
+                                template += `
+                                <button class="btn btn-danger mr-1">
+                                    <i class="fas fa-window-close mr-1"></i> Eliminar
+                                </button>`;
+                            }
+                        }
                 template += `
                             </div>
                         </div>
@@ -97,6 +110,42 @@ $(document).ready(function(){
 
             }
         });
+        e.preventDefault();
+    });
+    $(document).on('click','.ascender', (e)=>{
+        const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id=$(elemento).attr('usuarioId');
+        funcion='ascender';
+        $('#id_user').val(id);
+        $('#funcion').val(funcion);
+    });
+    $(document).on('click','.descender', (e)=>{
+        const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id=$(elemento).attr('usuarioId');
+        funcion='descender';
+        $('#id_user').val(id);
+        $('#funcion').val(funcion);
+    });
+    $('#form-confirmar').submit(e=>{
+        let pass=$('#oldpass').val();
+        let id_usuario=$('#id_user').val();
+        funcion=$('#funcion').val();
+        $.post('../controlador/UsuarioController.php', {pass, id_usuario, funcion},(Response)=>{
+          if(Response=='ascendido'||Response=='descendido'){
+            $('#confirmado').hide('slow');
+            $('#confirmado').show(1000);
+            $('#confirmado').hide(2000);
+            $('#form-confirmar').trigger('reset');
+          }
+          else{
+            $('#rechazado').hide('slow');
+            $('#rechazdo').show(1000);
+            $('#rechazado').hide(2000);
+            $('#form-confirmar').trigger('reset');
+          }
+            buscar_datos();
+
+        }); 
         e.preventDefault();
     });
 })
