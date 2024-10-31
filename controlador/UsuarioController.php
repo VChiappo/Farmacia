@@ -141,5 +141,10 @@ if($_POST['funcion']=='cambiar_foto'){
         $id_descendido=$_POST['id_descendido'];
         $usuario->descender($pass, $id_descendido, $id_usuario);
     }
+    if($_POST['funcion']=='borrar_usuario'){
+        $pass=$_POST['pass'];
+        $id_borrado=$_POST['id_descendido'];
+        $usuario->borrar($pass, $id_borrado, $id_usuario);
+    }
 }
 ?>

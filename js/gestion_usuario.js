@@ -42,7 +42,7 @@ $(document).ready(function(){
                         if (tipo_usuario == 3 && usuario.tipo_usuario != 3) {
                             if(usuario.tipo_usuario!=3){
                                 template += `
-                                <button class="btn btn-danger mr-1">
+                                <button class="borrar-usuario btn btn-danger mr-1" type="button" data-toggle="modal" data-target="#confirmar">
                                     <i class="fas fa-window-close mr-1"></i> Eliminar
                                 </button>`;
                             }
@@ -62,7 +62,7 @@ $(document).ready(function(){
                         else{
                             if(tipo_usuario == 1 && usuario.tipo_usuario!=1 && usuario.tipo_usuario!=3){
                                 template += `
-                                <button class="btn btn-danger mr-1">
+                                <button class="borrar-usuario btn btn-danger mr-1" type="button" data-toggle="modal" data-target="#confirmar">
                                     <i class="fas fa-window-close mr-1"></i> Eliminar
                                 </button>`;
                             }
@@ -126,12 +126,19 @@ $(document).ready(function(){
         $('#id_user').val(id);
         $('#funcion').val(funcion);
     });
+    $(document).on('click','.borrar-usuario', (e)=>{
+        const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id=$(elemento).attr('usuarioId');
+        funcion='borrar_usuario';
+        $('#id_user').val(id);
+        $('#funcion').val(funcion);
+    });
     $('#form-confirmar').submit(e=>{
         let pass=$('#oldpass').val();
         let id_usuario=$('#id_user').val();
         funcion=$('#funcion').val();
         $.post('../controlador/UsuarioController.php', {pass, id_usuario, funcion},(Response)=>{
-          if(Response=='ascendido'||Response=='descendido'){
+          if(Response=='ascendido'||Response=='descendido'||Response=='borrado'){
             $('#confirmado').hide('slow');
             $('#confirmado').show(1000);
             $('#confirmado').hide(2000);
