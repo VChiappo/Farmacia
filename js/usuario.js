@@ -66,7 +66,7 @@ $(document).ready(function () {
     });
 
     // Guardar cambios al enviar el formulario
-    $('#form-usuario').submit(e => {
+    $('#form_editar_usuario').submit(e=>{
         if (edit == true) {
             let telefono = $('#telefono').val();
             let residencia = $('#residencia').val();
@@ -75,12 +75,13 @@ $(document).ready(function () {
             let adicional = $('#adicional').val();
             funcion = 'editar_usuario';
             $.post('../controlador/UsuarioController.php', { id_usuario, funcion, telefono, residencia, correo, sexo, adicional }, (response) => {
+                //console.log("respuesta del servidor: " + response);
                 // Usamos $.trim() para evitar problemas con espacios adicionales en la respuesta
                 if ($.trim(response) == 'editado') {
                     $('#editado').hide('slow');
                     $('#editado').show(1000);
                     $('#editado').hide(2000);
-                    $('#form-usuario').trigger('reset');
+                    $('#form_editar_usuario').trigger('reset');
                 }
                 edit = false;
                 buscar_usuario(id_usuario);
@@ -89,7 +90,7 @@ $(document).ready(function () {
             $('#noeditado').hide('slow');
             $('#noeditado').show(1000);
             $('#noeditado').hide(2000);
-            $('#form-usuario').trigger('reset');
+            $('#form_editar_usuario').trigger('reset');
         }
         e.preventDefault();
     });

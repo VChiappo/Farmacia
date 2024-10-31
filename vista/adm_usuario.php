@@ -13,7 +13,7 @@ if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar contraseña</h1>
+          <h2 class="modal-title fs-5" id="exampleModalLabel">Confirmar contraseña</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -47,7 +47,7 @@ if($_SESSION['us_tipo']==1||$_SESSION['us_tipo']==3){
             </div>
         </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" data-dismiss="modal" class="button btn btn-outline-secondary float-right m-1">Cerrar</button>
             <button type="submit" class="btn bg-gradient-primary">Guardar</button>
           </form>
         </div>
