@@ -57,7 +57,16 @@ if($_POST['funcion']=='editar_usuario'){
     $usuario->editar($id_usuario,$telefono,$residencia,$correo,$sexo,$adicional);
     echo 'editado';
 }
-
+if($_POST['funcion']=='crear_usuario'){
+    $nombre= $_POST['nombre'];
+    $apellido= $_POST['apellido'];
+    $edad= $_POST['edad'];
+    $dni= $_POST['dni'];
+    $pass= $_POST['pass'];
+    $tipo= 2;
+    $avatar='default.jpg';
+    $usuario->crear($nombre, $apellido, $edad, $dni, $pass, $tipo,	$avatar);
+   }
 
 if($_POST['funcion']=='cambiar_contra'){
     $id_usuario=$_POST['id_usuario'];
@@ -93,7 +102,7 @@ if($_POST['funcion']=='cambiar_foto'){
         echo $jsonstring;
     }
   }
-  if($_POST['funcion']=='buscar_usuarios_adm'){
+if($_POST['funcion']=='buscar_usuarios_adm'){
     $json=array();
     $fecha_actual= new DateTime();
     $usuario->buscar();
@@ -120,31 +129,26 @@ if($_POST['funcion']=='cambiar_foto'){
     $jsonstring = json_encode($json);
     echo $jsonstring;
 
-    if($_POST['funcion']=='crear_usuario'){
-     $nombre= $_POST['nombre'];
-     $apellido= $_POST['apellido'];
-     $edad= $_POST['edad'];
-     $dni= $_POST['dni'];
-     $pass= $_POST['pass'];
-     $tipo=2;
-     $avatar='default.jpg';
-     $usuario->crear($nombre, $apellido, $edad, $dni, $pass, $tipo,	$avatar);
-    }
-    if($_POST['funcion']=='ascender'){
-        $pass=$_POST['pass'];
-        $id_ascendido=$_POST['id_ascendido'];
-        $usuario->ascender($pass, $id_ascendido, $id_usuario);
-    }
+} 
+if($_POST['funcion']=='ascender'){
+    $pass=$_POST['pass'];
+    $id_ascendido=$_POST['id_ascendido'];
+    $usuario->ascender($pass, $id_ascendido, $id_usuario);
+}
 
-    if($_POST['funcion']=='descender'){
-        $pass=$_POST['pass'];
-        $id_descendido=$_POST['id_descendido'];
-        $usuario->descender($pass, $id_descendido, $id_usuario);
-    }
-    if($_POST['funcion']=='borrar_usuario'){
-        $pass=$_POST['pass'];
-        $id_borrado=$_POST['id_descendido'];
-        $usuario->borrar($pass, $id_borrado, $id_usuario);
-    }
+if($_POST['funcion']=='descender'){
+    $pass=$_POST['pass'];
+    $id_descendido=$_POST['id_descendido'];
+    $usuario->descender($pass, $id_descendido, $id_usuario);
+}
+
+if ($_POST['funcion'] == 'borrar_usuario') {
+    $id_usuario = $_POST['id_usuario'];
+
+    // Llamada al método del modelo para eliminar el usuario
+    $resultado = $usuario->eliminarUsuario($id_usuario);
+
+    // Responder según el resultado
+    echo $resultado;
 }
 ?>

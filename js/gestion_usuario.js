@@ -88,10 +88,10 @@ $(document).ready(function(){
     });
     
     $('#form-crear').submit(e=>{
-        let nombre =$('#nombre').val();
-        let apellido =$('#apellido').val();
+        let nombre =$('#nombre_us').val();
+        let apellido =$('#apellido_us').val();
         let edad=$('#edad').val();
-        let dni =$('#dni').val();
+        let dni =$('#dni_us').val();
         let pass =$('#pass').val();
         funcion='crear_usuario';
         $.post('../controlador/UsuarioController.php',{nombre, apellido, edad, dni, pass, funcion},(Response)=>{
@@ -133,7 +133,7 @@ $(document).ready(function(){
         $('#id_user').val(id);
         $('#funcion').val(funcion);
     });
-    $('#form-confirmar').submit(e=>{
+    /*$('#form-confirmar').submit(e=>{
         let pass=$('#oldpass').val();
         let id_usuario=$('#id_user').val();
         funcion=$('#funcion').val();
@@ -154,5 +154,31 @@ $(document).ready(function(){
 
         }); 
         e.preventDefault();
+    });*/
+
+    $(document).ready(function() {
+        // Al abrir el modal, asigna el id_usuario al campo oculto
+        $('.btn-eliminar').on('click', function() {
+            let id_usuario = $(this).data('id'); // Supone que el botón tiene el id del usuario en data-id
+            $('#id_user').val(id_usuario);
+            $('#confirmar').modal('show');
+        });
+    
+        // Acción al confirmar la eliminación
+        $('#btn-confirmar-eliminacion').on('click', function() {
+            let id_usuario = $('#id_user').val();
+            let funcion = 'borrar_usuario';
+    
+            // Enviar solicitud de eliminación al controlador
+            $.post('../controlador/UsuarioController.php', { id_usuario, funcion }, (Response) => {
+                console.log(Response); // Útil para depuración
+                if (Response == 'borrado') {
+                    $('#confirmado').show(1000).delay(2000).fadeOut();
+                    setTimeout(() => location.reload(), 3000); // Recarga la página después de la confirmación
+                } else {
+                    $('#rechazado').show(1000).delay(2000).fadeOut();
+                }
+            });
+        });
     });
 })
