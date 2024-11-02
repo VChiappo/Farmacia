@@ -4,7 +4,7 @@ $laboratorio = new laboratorio();
 
 if ($_POST['funcion'] == 'crear') {
     $nombre = $_POST['nombre_laboratorio'];
-    $avatar = 'lab_default';
+    $avatar = 'lab_default.png';
     $laboratorio->crear($nombre, $avatar);
 }
 
