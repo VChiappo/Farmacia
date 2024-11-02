@@ -113,8 +113,50 @@ if($_SESSION['us_tipo']==1 ||$_SESSION['us_tipo']==3){
   <title>Adm | Atributo</title>
   <!-- Tell the browser to be responsive to screen width -->
   <?php
+
   include_once "layouts/nav.php";
  ?>
+ <div class="modal fade" id="cambiologo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar logo</h1>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img id="logoactual" src="../img/avatar.png" class="profile-user-img img-fluid img-circle">
+          </div>
+          <div class="text-center">
+            <b id="nombre_logo">
+
+            </b>
+          </div>
+          <div class="alert alert-success text-center" id="edit" style="display: none;">
+            <span><i class="fas fa-check m-1"></i>El logo se edito</span>
+          </div>
+          <div class="alert alert-danger text-center" id="noedit" style="display: none;">
+            <span><i class="fas fa-times m-1"></i>Formato no soportado</span>
+          </div>
+          <form id="form-logo" enctype="multipart/form-data">
+            <div class="input-group mb-3 ml-5 mt-2">
+              <input type="file" name="photo" class="input-group">
+              <input type="hidden" name="funcion" id="funcion">
+              <input type="hidden" name="id_logo_lab" id="id_logo_lab">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -148,7 +190,7 @@ if($_SESSION['us_tipo']==1 ||$_SESSION['us_tipo']==3){
                             </ul>
 
                         </div>
-                        <div class="card-body">
+                        <div class="card-body p-0">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="laboratorio">
                                     <div class="card card-success">
@@ -161,13 +203,14 @@ if($_SESSION['us_tipo']==1 ||$_SESSION['us_tipo']==3){
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-body p-0">
-                                            <table class="table table-over text-nowrap">
+                                        <div class="card-body p-0 table-responsive">
+                                            <table class="table table-hover text-nowrap">
                                                 <thead class="table-success">
                                                     <tr>
-                                                        <th>Laboratorio</th>
-                                                        <th>Logo</th>
                                                         <th>Acción</th>
+                                                        <th>Logo</th>
+                                                        <th>Laboratorio</th>
+                                                        
                                                     </tr>
 
 
