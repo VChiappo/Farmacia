@@ -14,21 +14,19 @@ if($_SESSION['us_tipo']==1 ||$_SESSION['us_tipo']==3){
                         </button>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-success text-center" id="add" style="display: none;">
-                          <span><i class="fas fa-check m-1"></i> Usuario agregado con exito</span>
+                        <div class="alert alert-success text-center" id="add-laboratorio" style="display: none;">
+                          <span><i class="fas fa-check m-1"></i> Laboratorio agregado con exito</span>
                         </div>
-                        <div class="alert alert-danger text-center" id="noadd" style="display: none;">
-                          <span><i class="fas fa-times m-1"></i>Este usuario ya existe, por favor verifique el DNI</span>
+                        <div class="alert alert-danger text-center" id="noadd-laboratorio" style="display: none;">
+                          <span><i class="fas fa-times m-1"></i>Este nombre de laboratorio ya existe</span>
                         </div>
-                        <form id="form-crear.laboratorio">
+                        <form id="form-crear-laboratorio">
                             <div class="form-group">
-                                    <label for="nombre.laboratorio">Nombre</label>
-                                    <input id="nombre.laboratorio" type="text" class="form-control" placeholder="Ingrese nombre" required>
+                                    <label for="nombre-laboratorio">Nombre</label>
+                                    <input id="nombre-laboratorio" type="text" class="form-control" placeholder="Ingrese nombre" required>
                             </div>
-                            <div class="form-group">
-                                    <label for="pass">Password</label>
-                                    <input id="pass" type="Password" class="form-control" placeholder="Ingrese password" required>
-                            </div>
+                            
+                            
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn bg-gradient-primary float-right m-1">Crear</button>
@@ -157,7 +155,7 @@ if($_SESSION['us_tipo']==1 ||$_SESSION['us_tipo']==3){
                                         <div class="card-header">
                                             <div class="card-title">Busca laboratorio <button type="button" data-toggle="modal" data-target="#crearlaboratorio" class="btn bg-gradient-primary btn-sm m-2">Crear laboratorio</button></div>
                                             <div class="input-group">
-                                                <input id="buscar laboratorio" type="text" class="form-control float-left" placeholder="Ingrese nombre">
+                                                <input id="buscar-laboratorio" type="text" class="form-control float-left" placeholder="Ingrese nombre">
                                                 <div class="input-group-append">
                                                     <button class="btn-default"><i class="fas fa-search"></i></button>
                                                 </div>
@@ -217,3 +215,4 @@ else{
     header('Location: ../index.php');
 }
 ?>
+<script src="../js/Laboratorio.js"></script>
