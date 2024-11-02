@@ -55,4 +55,8 @@ if ($_POST['funcion'] == 'cambiar_logo') {
     
     echo json_encode($json);
 }
+if ($_POST['funcion'] == 'borrar') {
+    $id=$_POST['id'];
+    $laboratorio->borrar($id);
+}
 ?>
