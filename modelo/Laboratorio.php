@@ -27,7 +27,7 @@ class Laboratorio{
         $consulta=$_POST['consulta'];
         $sql = "SELECT * FROM laboratorio where nombre LIKE :consulta";
         $query = $this->acceso->prepare($sql);
-        $query->execute(array(':consulta' => "%consulta%"));
+        $query->execute(array(':consulta' => "%$consulta%"));
         $this->objetos = $query->fetchall();
         return $this->objetos;
         } 
