@@ -29,3 +29,15 @@ if ($_POST['funcion'] == 'borrar') {
     $id = $_POST['id'];
    $presentacion->borrar($id);
 }
+if ($_POST['funcion'] == 'rellenar_presentaciones') {
+    $tipo->rellenar_presentaciones();
+    $json = array();
+    foreach ($presentacion -> objetos as $objeto){
+        $json[]=array(
+            'id'=>$objeto->id_presentacion,
+            'nombre'=>$objeto->nombre
+        );
+    }
+    $jsonstring=json_encode($json);
+    echo  $jsonstring;
+}

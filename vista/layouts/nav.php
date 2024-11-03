@@ -1,6 +1,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- seetAlert2 -->
 <link rel="stylesheet" href="../css/sweetalert2.css">
+<!-- Select2 -->
+<link rel="stylesheet" href="../css/select2.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="../css/css/all.min.css">
 <!-- Ionicons -->
@@ -87,6 +89,14 @@
         </li>
              <li class="nav-header">Almacen</li>
         <li class="nav-item">
+        <li class="nav-item">
+          <a href="adm_producto.php" class="nav-link">
+            <i class="nav-icon fas fa-pills"></i>
+            <p>
+              Gestionar Medicamentos
+            </p>
+          </a>
+        </li>
           <a href="adm_atributo.php" class="nav-link">
             <i class="nav-icon fas fa-vials"></i>
             <p>
