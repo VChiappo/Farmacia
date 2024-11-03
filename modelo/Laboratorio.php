@@ -67,5 +67,12 @@ class Laboratorio {
         echo 'noborrado';
        }
     }
+
+    function editar($nombre, $id_editado){
+        $sql = "UPDATE laboratorio SET nombre=:nombre where id_laboratorio=:id";
+        $query = $this->acceso->prepare($sql);
+        $query->execute(array(':id' => $id_editado, ':nombre' =>$nombre));
+        echo 'edit';
+    }
 }
 ?>

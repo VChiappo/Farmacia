@@ -1,10 +1,19 @@
 $(document).ready(function () {
     buscar_Lab();
     var funcion;
+    var edit=false;
     $('#form-crear-laboratorio').submit(e => {
         let nombre_laboratorio = $('#nombre-laboratorio').val();
-        funcion = 'crear';
-        $.post('../controlador/LaboratorioController.php', { nombre_laboratorio, funcion }, (response) => {
+        let id_editado = $('#id_editar_lab').val();
+       
+        if(edit==false){
+            funcion='crear';
+        }
+        else{
+            funcion ='editar';
+        }
+ 
+        $.post('../controlador/LaboratorioController.php', {nombre_laboratorio, id_editado, funcion}, (response) => {
             if (response == 'add') {
                 $('#add-laboratorio').hide('slow');
                 $('#add-laboratorio').show(1000);
@@ -12,12 +21,20 @@ $(document).ready(function () {
                 $('#form-crear-laboratorio').trigger('reset');
                 buscar_Lab();
             }
-            else {
+            if (response == 'noadd') {
                 $('#noadd-laboratorio').hide('slow');
                 $('#noadd-laboratorio').show(1000);
                 $('#noadd-laboratorio').hide(2000);
                 $('#form-crear-laboratorio').trigger('reset');
             }
+            if (response == 'edit'){
+                $('#edit-lab').hide('slow');
+                $('#edit-lab').show(1000);
+                $('#edit-lab').hide(2000);
+                $('#form-crear-laboratorio').trigger('reset');
+                buscar_Lab();
+            }
+            edit==false;
         })
         e.preventDefault();
     });
@@ -33,7 +50,7 @@ $(document).ready(function () {
                     <button class="avatar btn btn-info" title="Cambiar logo de Laboratorio" type="button" data-toggle="modal" data-target="#cambiologo">
                     <i class="far fa-image"></i>
                     </button>
-                    <button class="editar btn btn-success" title="Editar Laboratorio">
+                    <button class="editar btn btn-success" title="Editar Laboratorio" type="button" data-toggle="modal" data-target="#crearlaboratorio">
                     <i class="fas fa-pencil-alt"></i>
                     </button>
                     <button class="borrar btn btn-danger" title="Borrar Laboratorio">
@@ -132,6 +149,7 @@ $(document).ready(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.post('../controlador/LaboratorioController.php', { id, funcion }, (response) => {
+                    edit==false;
                     if (response == 'borrado') {
                         swalWithBootstrapButtons.fire(
                             "Eliminado!",
@@ -153,5 +171,15 @@ $(document).ready(function () {
                 })
             }
         })
+    })
+    $(document).on("click", ".editar", (e) => {
+        const elemento = $(this)[0].activeElement.parentElement.parentElement;
+        const id = $(elemento).attr("labId");
+        const nombre = $(elemento).attr("labnombre");
+        $('#id_editar_lab').val(id);
+        $('#nombre-laboratorio').val(nombre);
+        edit=true;
+
+       
     })
 });
