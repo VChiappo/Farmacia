@@ -21,10 +21,10 @@ if ($_SESSION['us_tipo'] == 1 || $_SESSION['us_tipo'] == 3) {
           </div>
           <div class="card-body">
             <div class="alert alert-success text-center" id="add" style='display:none;'>
-              <span><i class="fas fa-check n-1"></i>Se agregó correctamente</span>
+              <span><i class="fas fa-check n-1"></i>Producto agregado correctamente</span>
             </div>
             <div class="alert alert-danger text-center" id="noadd" style='display:none;'>
-              <span><i class="fas fa-check n-1"></i>El producto ya existe en otro usuario</span>
+              <span><i class="fas fa-check n-1"></i>El producto ya existe</span>
             </div>
           </div>
           <div class="card-body">
@@ -75,7 +75,7 @@ if ($_SESSION['us_tipo'] == 1 || $_SESSION['us_tipo'] == 3) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Gestion prodcuto <button id="button-crear" type="button" data-toggle="modal" data-target="#crearproducto" class="btn bg-gradient-primary ml-2">Crear producto</button></h1>
+            <h1>Gestion producto <button id="button-crear" type="button" data-toggle="modal" data-target="#crearproducto" class="btn bg-gradient-primary ml-2">Crear producto</button></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

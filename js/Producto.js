@@ -4,7 +4,7 @@ $(document).ready(function () {
     rellenar_laboratorios();
     rellenar_tipos();
     rellenar_presentaciones();
-
+    buscar_producto();
     function rellenar_laboratorios() {
         funcion = "rellenar_laboratorios";
         $.post('../controlador/LaboratorioController.php', { funcion }, (response) => {
@@ -53,7 +53,37 @@ $(document).ready(function () {
         let laboratorio = $('#laboratorio').val();
         let tipo = $('#tipo').val();
         let presentacion = $('#presentacion').val();
-        console.log(nombre + "" + concentracion + "" + adicional + "" + precio + "" + laboratorio + "" + tipo + "" + presentacion);
+        funcion="crear";
+        $.post('../controlador/ProductoController.php', { funcion, nombre, concentracion,adicional,precio,laboratorio,tipo,presentacion}, (response) => {
+            if( response =='add'){
+                $('#add').hide('slow');
+                $('#add').show(1000);
+                $('#add').hide(2000);
+                $('#form-crear-producto').trigger('reset');
+            }
+            if(response=='noadd'){
+                $('#noadd').hide('slow');
+                $('#noadd').show(1000);
+                $('#noadd').hide(2000);
+                $('#form-crear-producto').trigger('reset');
+            }
+            buscar_producto();
+        });
         e.preventDefault();
     })
+    function buscar_producto(consulta){
+        funcion="buscar";
+        $.post('../controlador/ProductoController.php', {consulta, funcion}, (response)=>{
+            console.log(response);
+        });
+    }
+    $(document).on('keyup', '#buscar-producto', function(){
+        let valor =$(this).val();
+        if(valor!=""){
+            buscar_producto(valor);
+        }
+        else{
+            buscar_producto();
+        }
+    });
 }) 
