@@ -30,9 +30,9 @@ if ($_POST['funcion'] == 'borrar') {
    $presentacion->borrar($id);
 }
 if ($_POST['funcion'] == 'rellenar_presentaciones') {
-    $tipo->rellenar_presentaciones();
+    $presentacion->rellenar_presentaciones(); // Cambia $tipo a $presentacion
     $json = array();
-    foreach ($presentacion -> objetos as $objeto){
+    foreach ($presentacion->objetos as $objeto){
         $json[]=array(
             'id'=>$objeto->id_presentacion,
             'nombre'=>$objeto->nombre
