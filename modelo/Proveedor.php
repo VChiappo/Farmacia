@@ -59,5 +59,22 @@ class Proveedor {
             echo 'noborrado';
         }
     }
+    function editar($id, $nombre, $telefono, $correo, $direccion)
+    {
+        $sql = "SELECT id_proveedor FROM proveedor WHERE id_proveedor!=:id AND nombre=:nombre";
+        $query = $this->acceso->prepare($sql);
+        $query->execute(array(':id' => $id, ':nombre' => $nombre));
+        $this->objetos = $query->fetchAll();
+
+        if (!empty($this->objetos)) {
+            echo 'noedit';
+        } else {
+            $sql = "UPDATE proveedor SET nombre=:nombre, telefono=:telefono, correo=:correo, direccion=:direccion WHERE id_proveedor=:id";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':id' => $id, ':nombre' => $nombre, ':telefono' => $telefono, ':correo' => $correo, ':direccion' => $direccion));
+            echo 'edit';
+        }
+    }
+    
 }
 ?>
