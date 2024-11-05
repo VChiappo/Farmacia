@@ -31,7 +31,7 @@
   </ul>
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-    <a href="../controlador/Logout.php">Cerrar Sesion</a>
+    <a href="../controlador/Logout.php">Cerrar Sesión</a>
    
   </ul>
 </nav>
@@ -83,24 +83,32 @@
           <a href="adm_usuario.php" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
-              Gestion usuarios
+              Gestión Usuarios
             </p>
           </a>
         </li>
-             <li class="nav-header">Almacen</li>
+             <li class="nav-header">Almacén</li>
         <li class="nav-item">
         <li class="nav-item">
           <a href="adm_producto.php" class="nav-link">
             <i class="nav-icon fas fa-pills"></i>
             <p>
-              Gestionar Medicamentos
+              Gestión Medicamentos
             </p>
           </a>
         </li>
           <a href="adm_atributo.php" class="nav-link">
             <i class="nav-icon fas fa-vials"></i>
             <p>
-              Gestion atributo
+              Gestión Atributo
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="adm_lote.php" class="nav-link">
+            <i class="nav-icon fas fa-cubes"></i>
+            <p>
+              Gestión Lote
             </p>
           </a>
         </li>
@@ -110,7 +118,7 @@
           <a href="adm_proveedor.php" class="nav-link">
             <i class="nav-icon fas fa-truck"></i>
             <p>
-              Gestionar Proveedor
+              Gestión Proveedor
             </p>
           </a>
         </li>
