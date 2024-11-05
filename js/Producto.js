@@ -76,12 +76,19 @@ $(document).ready(function () {
                 $('#form-crear-producto').trigger('reset');
                 buscar_producto();
             }
-          else{
+            if (response == 'noadd'){
             $('#noadd').hide('slow');
                 $('#noadd').show(1000);
                 $('#noadd').hide(2000);
                 $('#form-crear-producto').trigger('reset');
           }
+          if (response == 'noedit'){
+            $('#noadd').hide('slow');
+                $('#noadd').show(1000);
+                $('#noadd').hide(2000);
+                $('#form-crear-producto').trigger('reset');
+          }
+          edit=false;
         });
         e.preventDefault();
     })
@@ -215,4 +222,55 @@ $(document).ready(function () {
        
        
     });
+
+    $(document).on("click", ".borrar", (e) => {
+        funcion = "borrar";
+        const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id = $(elemento).attr("prodId");
+        const nombre = $(elemento).attr("prodNombre");
+        const avatar = $(elemento).attr("prodAvatar");
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger mr-2"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: '¿Estas seguro de eliminar a laboratorio ' + nombre + '?',
+            //text: "Esta eliminación es irreversible!",
+            //icon: "warning",
+            imageUrl: '' + avatar + '',
+            imageWitdh: 100,
+            imageHeight: 100,
+            showCancelButton: true,
+            confirmButtonText: "Si, estoy seguro!",
+            cancelButtonText: "Cancelar",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post('../controlador/ProductoController.php', { id, funcion }, (response) => {
+                    edit==false;
+                    if (response == 'borrado'){
+                        swalWithBootstrapButtons.fire(
+                            "Eliminado!",
+                            'El producto ' + nombre + ',  fue eliminado con exito!',
+                            "success")
+                       buscar_producto();
+                    }
+                    else (
+                        "Este producto no se puede eliminar!",
+                        'El producto ' + nombre + ', NO fue eliminado porque está siendo usado en un lote!',
+                        "error"
+                    )
+                })
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire({
+                    title: "Cancelado.",
+                    text: 'El producto ' + nombre + ', no fue eliminado!',
+                    icon: "error"
+                })
+            }
+        })
+    })
 }) 

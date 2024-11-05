@@ -48,35 +48,38 @@ if ($_POST['funcion'] == 'buscar') {
     echo  $jsonstring;
 }
 
-/*if ($_POST['funcion'] == 'cambiar_avatar') {
+if ($_POST['funcion'] == 'cambiar_avatar') {
     $id = $_POST['id_logo_prod'];
-    $avatar=$_POST['avatar'];
-    if  (($_FILES['photo']['type'] == 'image/jpeg') || ($_FILES['photo']['type'] == 'image/png') || ($_FILES['photo']['type'] == 'image/gif')) {
-        $nombre = uniqid().'-'.$_FILES['photo']['name'];
-        $ruta = '../img/ImgProd/'.$nombre;
+    $avatar = $_POST['avatar'];
+    if (($_FILES['photo']['type'] == 'image/jpeg') || ($_FILES['photo']['type'] == 'image/png') || ($_FILES['photo']['type'] == 'image/gif')) {
+        $nombre = uniqid() . '-' . $_FILES['photo']['name'];
+        $ruta = '../img/ImgProd/' . $nombre;
         move_uploaded_file($_FILES['photo']['tmp_name'], $ruta);
-            $producto->cambiar_logo($id, $nombre);
-           
-        if ($avatar!= '../img/ImgProd/prod_default.avif') {
-                    unlink($avatar);
-         }
-            
-            $json=array();
-            $json []= array(
-                'ruta' => $ruta,
-                'alert' => 'edit'
-            );
-            $jsonstring = json_encode($json[0]);
-            echo $jsonstring;
-        } 
-        else {
-            $json=array();
-            $json[] = array(
-            'alert' => 'noedit'
-            );
+        $producto->cambiar_logo($id, $nombre);
         
-   
+        if ($avatar != '../img/ImgProd/prod_default.avif') {
+            unlink($avatar);
+        }
+        
+        $json = array();
+        $json[] = array(
+            'ruta' => $ruta,
+            'alert' => 'edit'
+        );
         $jsonstring = json_encode($json[0]);
-        echo json_encode($json);
-}*/
+        echo $jsonstring;
+    } else {
+        $json = array();
+        $json[] = array(
+            'alert' => 'noedit'
+        );
+        $jsonstring = json_encode($json[0]);
+        echo $jsonstring;
+    }
+}
+if ($_POST['funcion'] == 'borrar') {
+    $id=$_POST['id'];
+    $producto->borrar($id);
+}
+
 ?>
