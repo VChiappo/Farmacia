@@ -6,6 +6,21 @@ $(document).ready(function () {
     rellenar_tipos();
     rellenar_presentaciones();
     buscar_producto();
+    rellenar_proveedores();
+
+    function rellenar_proveedores() {
+        funcion = "rellenar_proveedores";
+        $.post('../controlador/ProveedorController.php', { funcion }, (response) => {
+            const proveedores = JSON.parse(response);
+            let template = '';
+            proveedores.forEach(proveedor => {
+                template += `
+                <option value="${proveedor.id} ">${proveedor.nombre}</option>
+            `;
+            });
+            $('#proveedor').html(template);
+        })
+    }
     function rellenar_laboratorios() {
         funcion = "rellenar_laboratorios";
         $.post('../controlador/LaboratorioController.php', { funcion }, (response) => {
@@ -132,7 +147,7 @@ $(document).ready(function () {
                        
                         <i class="fas fa-pencil-alt"></i>
                         </button>
-                        <button class="lote btn btn-sm btn-primary">
+                        <button class="lote btn btn-sm btn-primary" type= "button" data-toggle="modal" data-target="#crearlote">
                         <i class="fas fa-plus-square"></i>
                         </button>
                         <button class="borrar btn btn-sm btn-danger">
@@ -167,6 +182,14 @@ $(document).ready(function () {
         $('#avatar').val(avatar);
         $('#logoactual').attr('src',avatar);
         $('#nombre_logo').html(nombre);
+    });
+
+    $(document).on('click', '.lote', (e)=>{
+        const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id=$(elemento).attr('prodId');
+        const nombre=$(elemento).attr('prodNombre');
+        $('#id_lote_prod').val(id);
+        $('#nombre_producto_lote').html(nombre);
     });
     $('#form-logo').submit(e=>{
         let formData = new FormData($('#form-logo')[0]);
@@ -273,4 +296,20 @@ $(document).ready(function () {
             }
         })
     })
+    $('#form-crear-lote').submit(e=>{
+        let id_producto=$('#id_lote_prod').val();
+        let proveedor=$('#proveedor').val();
+        let stock=$('#stock').val();
+        let vencimiento=$('#vencimiento').val();
+        funcion='crear'
+        $.post('../controlador/LoteController.php', {funcion, vencimiento, stock, proveedor, id_producto}, (response)=>{
+            $('#add-lote').hide('slow');
+            $('#add-lote').show(1000);
+            $('#add-lote').hide(2000);
+            $('#form-crear-lote').trigger('reset');
+            buscar_producto()
+        });
+
+        e.preventDefault();
+    });
 }) 
