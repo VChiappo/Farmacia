@@ -52,7 +52,7 @@ if ($_SESSION['us_tipo'] == 1 || $_SESSION['us_tipo'] == 3) {
       <div class="modal-content">
         <div class="card card-success">
           <div class="card-header">
-            <h3 class="card-title">Crear proveedor</h3>
+            <h3 class="card-title">Editar proveedor</h3>
             <button data-dismiss="modal" aria-label="close" class="close">
               <span aria-hidden="true">&times;</span>
             </button>
