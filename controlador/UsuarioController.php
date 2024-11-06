@@ -148,7 +148,7 @@ if ($_POST['funcion'] == 'borrar_usuario') {
     // Responder según el resultado
     echo $resultado;
 }
-if ($_POST['funcion'] == 'devolver_avatar') {
+/*if ($_POST['funcion'] == 'devolver_avatar') {
     $usuario->devolver_avatar('id_usuario');
     $json = array();
     foreach ($usuario->objetos as $objeto) {
@@ -156,4 +156,4 @@ if ($_POST['funcion'] == 'devolver_avatar') {
     }
     $jsonstring = json_encode($json);
     echo $jsonstring;
-}
+}*/

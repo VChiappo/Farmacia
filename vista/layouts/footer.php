@@ -20,13 +20,4 @@
 <!-- SweetAlert2 -->
 <script src="../js/sweetalert2.js"></script>
 </body>
-<script>
-  let funcion = 'devolver_avatar';
-  $.post('../controlador/UsuarioController.php', {
-    funcion
-  }, (response) => {
-    const avatar = JSON.parse(response);
-    $('#avatar4').attr('src', '../img/' + avatar.avatar);
-  })
-</script>
 </html>
