@@ -9,7 +9,7 @@ $(document).ready(function () {
             let template = '';
             lotes.forEach(lote => {
                 template += `
-                <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">`;
+                <div loteId="${lote.id}" loteStock="${lote.stock}" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">`;
                 if(lote.estado=='light'){
                     template += `<div class="card bg-light">`;
                 }
@@ -20,7 +20,7 @@ $(document).ready(function () {
                     template += `<div class="card bg-warning">`;
                 }
                     template += `<div class="card-header border-bottom-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                    <h6>Código ${lote.id}</h6>
+                    <h6>Codigo ${lote.id}</h6>
                         <i class="fas fa-lg fa-cubes mr-1"></i>${lote.stock}
                         </font></font>
                     </div>
@@ -49,7 +49,7 @@ $(document).ready(function () {
                     <div class="card-footer">
                     <div class="text-right">
                        
-                        <button class="editar btn btn-sm btn-success" type= "button" data-toggle="modal" data-target="#crearlote" >
+                        <button class="editar btn btn-sm btn-success" type= "button" data-toggle="modal" data-target="#editarlote" >
                         <i class="fas fa-pencil-alt"></i>
                         </button>
                         
@@ -74,5 +74,79 @@ $(document).ready(function () {
             buscar_lote();
         }
     });
-   
+
+    $(document).on('click', '.editar', (e)=>{
+        const elemento= $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        const id=$(elemento).attr('loteId');
+        const stock=$(elemento).attr('loteStock');
+        $('#id_lote_prod').val(id);
+        $('#stock').val(stock);
+        $('#codigo_lote').html(id);
+        
+       
+       
+       
+    });
+   $('#form-editar-lote').submit(e=>{
+    let id = $('#id_lote_prod').val();
+    let stock = $('#stock').val();
+    funcion = "editar";
+    $.post('../controlador/LoteController.php', {id, stock, funcion}, (response) =>{
+        if(response == 'edit'){
+            $('#edit-lote').hide('slow');
+            $('#edit-lote').show(1000);
+            $('#edit-lote').hide(2000);
+            $('#form-editar-lote').trigger('reset');
+
+        }
+        buscar_lote();
+    })
+    e.preventDefault();
+   })
+
+   $(document).on("click", ".borrar", (e) => {
+    funcion = "borrar";
+    const elemento = $(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+    const id = $(elemento).attr("loteId");
+    
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger mr-2"
+        },
+        buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+        title: '¿Estas seguro de eliminar lote ' + id + '?',
+        //text: "Esta eliminación es irreversible!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, estoy seguro!",
+        cancelButtonText: "Cancelar",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.post('../controlador/LoteController.php', { id, funcion }, (response) => {
+                if (response == 'borrado'){
+                    swalWithBootstrapButtons.fire(
+                        "Eliminado!",
+                        'El lote ' +id+ ',  fue eliminado con exito!',
+                        "success")
+                   buscar_lote();
+                }
+                else (
+                    "Este lote no se pudo eliminar!",
+                    'El lote ' + id + ', NO fue eliminado porque está siendo usado!',
+                    "error"
+                )
+            })
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire({
+                title: "Cancelado.",
+                text: 'El lote ' + id + ', no fue eliminado!',
+                icon: "error"
+            })
+        }
+    })
+})
 }) 
