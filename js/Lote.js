@@ -20,6 +20,7 @@ $(document).ready(function () {
                     template += `<div class="card bg-warning">`;
                 }
                     template += `<div class="card-header border-bottom-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                    <h6>Código ${lote.id}</h6>
                         <i class="fas fa-lg fa-cubes mr-1"></i>${lote.stock}
                         </font></font>
                     </div>
