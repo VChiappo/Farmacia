@@ -138,4 +138,12 @@ class Usuario
             return 'noborrado';
         }
     }
+
+    function devolver_avatar($id_usuario) {
+        $sql = "SELECT avatar FROM usuario where id_usuario=:id_usuario";
+        $query = $this->acceso->prepare($sql);
+         $query->execute(array(':id_usuario' => $id_usuario));
+        $this->objetos = $query->fetchall();
+        return $this->objetos;
+    }
 }
